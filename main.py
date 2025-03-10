@@ -8,8 +8,14 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import datetime
 import pytz
+import os
+from threading import Thread
+from flask import Flask
 from notifier import send_whatsapp_message
 from config import TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_PHONE_NUMBER, MY_WHATSAPP_NUMBER
+
+# Initialize Flask app
+app = Flask(__name__)
 
 def get_top_10_prices():
     chrome_options = Options()
@@ -80,7 +86,7 @@ def is_sleep_time():
     current_time = datetime.datetime.now(italian_tz).time()
     return current_time >= datetime.time(0, 0) and current_time <= datetime.time(7, 0)
 
-def run_every_hour():
+def run_scheduler():
     while True:
         if not is_sleep_time():
             print("\n🕒 Running hourly update...")
@@ -92,5 +98,19 @@ def run_every_hour():
         print("\n⏳ Waiting for next hour...\n")
         time.sleep(3600)
 
+@app.route('/')
+def home():
+    return "P2P Price Monitor is running", 200
+
+@app.route('/health')
+def health_check():
+    return "OK", 200
+
 if __name__ == "__main__":
-    run_every_hour()
+    # Start the scheduler in a separate thread
+    scheduler_thread = Thread(target=run_scheduler)
+    scheduler_thread.daemon = True
+    scheduler_thread.start()
+    
+    # Run the Flask app
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
