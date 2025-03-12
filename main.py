@@ -66,7 +66,7 @@ def job():
         conversion_rate = get_eur_to_usdt_conversion_rate()
         if conversion_rate:
             converted_value = 980 * conversion_rate
-            second_top_price = float(prices[1].replace(",", ""))
+            second_top_price = float(prices[3].replace(",", ""))
             rr_value = (converted_value * second_top_price) / 1000
 
             print(f"\n💱 980 EUR → {converted_value:.2f} USDT")
