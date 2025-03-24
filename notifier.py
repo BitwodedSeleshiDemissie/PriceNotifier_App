@@ -7,7 +7,7 @@ def send_whatsapp_message(prices, converted_value, rr_value):
         client = Client(config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOKEN)
         
         message_body = (
-            "HisMajesty, I am here with my hourly update!\n\n"
+            "My Lord, I am here with my hourly update!\n\n"
             f"💱 980 EUR → {converted_value:.2f} USDT\n"
             f"📈 RR Value: {rr_value:.1f}\n\n"
             "🔝 Top 10 Prices:\n" +
