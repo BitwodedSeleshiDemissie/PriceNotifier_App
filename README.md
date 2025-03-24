@@ -6,7 +6,7 @@ Since Binance doesn't provide an API for their P2P platform, I created a web scr
 
 I made sure the scraping follows ethical guidelines by limiting it to once every 60 minutes to avoid overloading the system.
 
-To receive updates seamlessly, I integrated the free WhatsApp messaging API, Twilio, since I use WhatsApp daily to communicate with my family and friends.
+To receive updates seamlessly, I integrated the free WhatsApp messaging API, Twilio, since I use WhatsApp daily to communicate with my family and friends(This way I stay informed even without planning to!).
 
 Instead of paying an extra $7 per month to host it as a background service on Render (which only offers a free version with limited features for web applications), I wrapped the app in a web application format.
 
