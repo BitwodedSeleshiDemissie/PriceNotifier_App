@@ -1,15 +1,25 @@
-### Price Updater App
+# PriceNotifier_App
 
-Tired of constantly checking the market values for cryptocurrencies and EUR/USDT exchange rates for my part-time forex job, I decided to automate the process.
+This app scrapes **crypto and P2P EUR–USDT prices** and notifies you on WhatsApp when prices meet your set conditions.  
+It’s designed as a hosted web app (e.g. Render, Heroku) so it can run continuously without needing to keep a local script active.
 
-Since Binance doesn't provide an API for their P2P platform, I created a web scraping solution using BeautifulSoup and Selenium to extract the data I need.
+---
 
-I made sure the scraping follows ethical guidelines by limiting it to once every 60 minutes to avoid overloading the system.
+## Features
 
-To receive updates seamlessly, I integrated the free WhatsApp messaging API, Twilio, since I use WhatsApp daily to communicate with my family and friends(This way I stay informed even without planning to!).
+- Scrapes market data using **Selenium + BeautifulSoup**  
+- Runs automatically at safe intervals (default: every 60 minutes)  
+- Sends WhatsApp alerts via **Twilio API**  
+- Hosted as a web app with a `/` route so external uptime services can ping it to keep it awake  
 
-Instead of paying an extra $7 per month to host it as a background service on Render (which only offers a free version with limited features for web applications), I wrapped the app in a web application format.
+---
 
-Since websites on Render go to sleep if not used, I utilized an external service that pings my website periodically to keep it awake and running.
+## Installation
 
-Enjoy :)
+```bash
+# Clone the repo
+git clone https://github.com/BitwodedSeleshiDemissie/PriceNotifier_App.git
+cd PriceNotifier_App
+
+# Install dependencies
+pip install -r requirements.txt
